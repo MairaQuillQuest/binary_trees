@@ -1,11 +1,5 @@
 #include "binary_trees.h"
 
-bst_t *swap(bst_t *a, bst_t *b);
-size_t binary_tree_size(const binary_tree_t *tree);
-heap_t *swap_head(heap_t *head, heap_t *node);
-heap_t *perc_down(heap_t *node);
-int heap_extract(heap_t **root);
-
 #define INIT_NODE {0, NULL, NULL, NULL}
 
 #define CONVERT "0123456789ABCDEF"
@@ -37,13 +31,13 @@ int heap_extract(heap_t **root);
 		*--binary = CONVERT[size % 2]; \
 		size /= 2; \
 	}
+
 /**
  * swap - swaps two nodes in binary tree
  * @a: first node
  * @b: second node
  * Return: pointer to root
  */
-
 bst_t *swap(bst_t *a, bst_t *b)
 {
 	bst_t a_copy = INIT_NODE;
@@ -59,6 +53,7 @@ bst_t *swap(bst_t *a, bst_t *b)
 		b->left->parent = a;
 	if (b->right)
 		b->right->parent = a;
+
 	b->parent = a_copy.parent;
 	if (a_copy.parent)
 	{
@@ -86,17 +81,16 @@ bst_t *swap(bst_t *a, bst_t *b)
 	return (b);
 }
 
-
 /**
  * binary_tree_size - measures the size of a binary tree
  * @tree: input binary tree
  * Return: number of descendant child nodes
  */
-
 size_t binary_tree_size(const binary_tree_t *tree)
 {
 	if (!tree)
 		return (0);
+
 	return (1 + binary_tree_size(tree->left) + binary_tree_size(tree->right));
 }
 
